@@ -1,0 +1,158 @@
+{% extends './base.html' %}
+{% block main %}
+{% load static %}
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'plist/img/bg-img/bg-1.jpg' %});"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Bring song in YouTube </h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Whatever you want <span>Whatever you want </span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="{% url 'song_new' %}" class="btn oneMusic-btn mt-50">Let's start now <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'plist/img/bg-img/bg-2.jpg' %});"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">Bring song in YouTube </h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">Whatever you want <span>Whatever you want </span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="{% url 'song_new' %}" class="btn oneMusic-btn mt-50">Let's start now <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Latest Albums Area Start ##### -->
+    <section class="latest-albums-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading style-2">
+                        <p>See what’s new</p>
+                        <h2>Latest Songs</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9">
+                    <div class="ablums-text text-center mb-70">
+                        <p>Nam tristique ex vel magna tincidunt, ut porta nisl finibus. Vivamus eu dolor eu quam varius rutrum. Fusce nec justo id sem aliquam fringilla nec non lacus. Suspendisse eget lobortis nisi, ac cursus odio. Vivamus nibh velit, rutrum at ipsum ac, dignissim iaculis ante. Donec in velit non elit pulvinar pellentesque et non eros.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="albums-slideshow owl-carousel">
+                        
+                        <div class="single-album">
+                            <img src={% static "plist/img/bg-img/a1.jpg"%} alt="">
+                            <div class="album-info">
+                                <a href="#">
+                                    <h5>The Cure</h5>
+                                </a>
+                                <p>Second Song</p>
+                            </div>
+                        </div>
+                        
+                        {% for song in my_song_list %}
+                        <div class="single-album">
+                            <a href="{% url 'song_detail' pk=song.pk%}">
+
+                                {% if song.song_thumbnail == 'default' %}
+                                <img src="/static/plist/img/artist/default.png" alt="">
+                                {% endif %}
+
+                                <img src="/static/plist/img/artist/{{ song.song_thumbnail }}.jpg" alt="">
+                            </a>
+
+                            <div class="album-info">
+                                <a href="{% url 'song_detail' pk=song.pk%}">
+                                    <h5>{{song.song_title}}</h5>
+                                </a>
+                                <p>&nbsp;&nbsp;{{ song.song_artist }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Latest Albums Area End ##### -->
+
+
+    <!-- ##### Miscellaneous Area Start ##### -->
+    <section class="miscellaneous-area section-padding-100-0">
+        <div class="container">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <p>최근에 추가한 플레이 리스트</p>
+                    <h2>Recently added playlist</h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for event in eventlist %}
+
+                <div class="col-12 col-lg-4">
+                    <div class="new-hits-area mb-70" style="width: 350px; height: 500px; overflow-y: auto;">
+                        
+                        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+                            <p>{{ event.my_playlist.author }} 님의 </p>
+                            <h2><a href="{% url 'play_detail' pk=event.my_playlist.pk %}">{{event.my_playlist.play_title }}</a></h2>
+                        </div>
+
+                        {% for song in event.song_list %}
+                        
+                            <!-- Single Top Item -->
+                            <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">
+                                
+                                <div class="first-part d-flex align-items-center">
+                                    <div class="thumbnail">
+                                        <img src="/static/plist/img/artist/{{ song.song_thumbnail }}.jpg" alt="">
+                                    </div>
+                                    <div class="content- playlist">
+                                        <h6>{{ song.song_artist}}</h6>
+                                        <p><a href="{% url 'song_detail' pk=song.pk %}">{{ song.song_title }}</a></p>
+                                    </div>
+                                </div>
+                                <audio preload="auto" controls loop="loop">
+                                    <source type="audio/mp3" src="http://localhost:8000/static/plist/audio/{{ song.song_title }}.mp3">
+                                </audio>
+                            </div>
+                        
+                        {% endfor %}
+                    </div>
+                </div>
+            
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
