@@ -66,17 +66,6 @@
             <div class="row">
                 <div class="col-12">
                     <div class="albums-slideshow owl-carousel">
-                        
-                        <div class="single-album">
-                            <img src={% static "plist/img/bg-img/a1.jpg"%} alt="">
-                            <div class="album-info">
-                                <a href="#">
-                                    <h5>The Cure</h5>
-                                </a>
-                                <p>Second Song</p>
-                            </div>
-                        </div>
-                        
                         {% for song in my_song_list %}
                         <div class="single-album">
                             <a href="{% url 'song_detail' pk=song.pk%}">

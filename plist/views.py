@@ -26,13 +26,13 @@ GENRE_CHOICES = (
     ('7', '기타'),
 )
 TAG_CHOICES = (
-    ("0", "탈주"),
-    ("1", "비오는날"),
+    ('0', "우울할때"),
+    ("1", "기분좋아지는"),
     ("2", "노동요"),
-    ("3", "심신안정,ASMR"),
-    ("4", "현실도피"),
-    ("5", "에러뜰때"),
-    ("6", "드라이브"),
+    ("3", "가사없는"),
+    ("4", "산뜻,상큼한"),
+    ("5", "신나는"),
+    ("6", "2000년대"),
 )
 
 
@@ -243,7 +243,7 @@ def playlist(request):
         list_dict['my_playlist'] = detail_list
         play_list.append(list_dict)
 
-    return render(request, 'plist/myPage/playlist.html', {'song_list': song_list, 'play_list': play_list})
+    return render(request, 'plist/myPage/playlist.html', {'play_list': play_list})
 
 
 # 특정 playlist 들어있는 노래목록 가져오기
@@ -275,7 +275,7 @@ def search_title(request):
     # 플레이리스트 가져오기
     play_list = Playlist.objects.filter(author=request.user)
 
-    return render(request, 'plist/search/title.html', {'songs':songs, 'play_list':play_list})
+    return render(request, 'search/title.html', {'songs':songs, 'play_list':play_list})
 
 
 @login_required
@@ -289,7 +289,7 @@ def search_artist(request):
     # 플레이리스트 가져오기
     play_list = Playlist.objects.filter(author=request.user)
 
-    return render(request, 'plist/search/artist.html', {'singer':singer, 'play_list':play_list})
+    return render(request, 'search/artist.html', {'singer':singer, 'play_list':play_list})
 
 
 @login_required
@@ -309,7 +309,7 @@ def search_genre(request):
     # 플레이리스트 가져오기
     play_list = Playlist.objects.filter(author=request.user)
 
-    return render(request, 'plist/search/genre.html',
+    return render(request, 'search/genre.html',
                   {'kpops': kpops,
                    'pops': pops,
                    'r_bs': r_bs,
@@ -336,7 +336,7 @@ def search_tag(request):
     # 플레이리스트 가져오기
     play_list = Playlist.objects.filter(author=request.user)
 
-    return render(request, 'plist/search/tag.html',
+    return render(request, 'search/tag.html',
                   {'tag_0': tag_0,
                    'tag_1': tag_1,
                    'tag_2': tag_2,
@@ -390,8 +390,13 @@ def delete_song(request, play_pk, song_pk):
     for i in song_list:
         if str(del_pk) == i:
             song_list.remove(str(del_pk))
+
     new_list = ",".join(song_list)
-    select_playlist.play_list = new_list
+
+    if not new_list :
+        select_playlist.play_list = 'empty'
+    else:
+        select_playlist.play_list = new_list
     select_playlist.save()
     return redirect('my_info')
 

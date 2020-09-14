@@ -44,13 +44,13 @@ class SongForm(forms.ModelForm):
             ('7', '기타'),
         )
         TAG_CHOICES = (
-            ('0', "탈주"),
-            ("1", "비오는날"),
+            ('0', "우울할때"),
+            ("1", "기분좋아지는"),
             ("2", "노동요"),
-            ("3", "심신안정,ASMR"),
-            ("4", "현실도피"),
-            ("5", "에러뜰때"),
-            ("6", "드라이브"),
+            ("3", "가사없는"),
+            ("4", "산뜻,상큼한"),
+            ("5", "신나는"),
+            ("6", "2000년대"),
         )
         widgets = {
             'song_genre': forms.Select(choices=GENRE_CHOICES, attrs={'class': 'form-control'}),
