@@ -3,7 +3,7 @@
 {% load static %}
 
     <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'plist/imgbg-img/breadcumb3.jpg' %});">
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'plist/img/bg-img/breadcumb3.jpg' %});">
         <div class="bradcumbContent">
             <p>Artist Search</p>
             <h2>가수 검색</h2>
@@ -50,7 +50,7 @@
                                                 <li><a href="#" style="font-size:20px;color:white"><i class="icon-inbox"></i>&nbsp;추가</a>
                                                     <ul class="dropdown">
                                                         {% for play in play_list %}
-                                                        <li><a href="{% url 'add_song' play_pk=play.pk song_pk=song.id path_pk=2 %}">{{ play.play_title}}</a></li>
+                                                        <li><a href="{% url 'song_add_playlist' play_pk=play.pk song_pk=song.id path_pk=2 %}">{{ play.play_title}}</a></li>
                                                         {% endfor %}
                                                      </ul>
                                                 </li>

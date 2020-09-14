@@ -14,17 +14,17 @@
         <div class="container">
             <div class="row">
 
-                {% for event in eventlist %}
+                {% for play in playlist %}
 
                 <div class="col-sm-4">
                     <div class="new-hits-area mb-70" style="width: 350px; height: 500px; overflow-y: auto;">
                         <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
-                            <p>{{ event.my_playlist.author }} 님의 </p>
-                            <h2><a href="{% url 'play_detail' pk=event.my_playlist.pk %}">{{event.my_playlist.play_title }}</a></h2>
+                            <p>{{ play.my_playlist.author }} 님의 </p>
+                            <h2><a href="{% url 'play_detail' pk=play.my_playlist.pk %}">{{play.my_playlist.play_title }}</a></h2>
                         </div>
 
                         
-                            {% for song in event.song_list %}
+                            {% for song in play.song_list %}
                             
                                 <!-- Single Top Item -->
                                 <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp" data-wow-delay="100ms">

@@ -15,7 +15,7 @@ class LoginForm(forms.ModelForm):
         fields = ['username', 'password']
 
 
-# 플레이 리스트 폼
+# 플레이리스트 추가 폼
 class PlaylistForm(forms.ModelForm):
     class Meta:
         model = Playlist
@@ -28,13 +28,14 @@ class PlaylistForm(forms.ModelForm):
         }
 
 
+# 노래 추가 폼
 class SongForm(forms.ModelForm):
     class Meta:
         model = Song
         fields = ('song_title','song_artist','song_url','song_genre'\
                   ,'song_tag','song_start','song_end','song_detail',)
         GENRE_CHOICES = (
-            ('0', '가요'),  # First one is the value of select option and second is the displayed value in option
+            ('0', '가요'),
             ('1', 'R&B'),
             ('2', 'POP'),
             ('3', 'JAZZ'),

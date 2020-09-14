@@ -14,7 +14,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({% static 'plist/img/bg-img/breadcumb3.jpg' %});">
         <div class="bradcumbContent">
-            <p><a href="{% url 'songs' %}">Edit Your Own Songs</a></p>
+            <p><a href="{% url 'my_detail_song' %}">Edit Your Own Songs</a></p>
             <h2>플레이리스트 상세정보</h2>
         </div>
     </section>
@@ -30,18 +30,17 @@
             </colgroup>
         <thead>
             <tr>
-                <th>Playlist name</th>
+                <th colspan="2">Playlist name</th>
                 <th>Delete</th>
             </tr>
         </thead>
                 <tr>
-                    <td>{{ list_dict.my_playlist}}</td>
+                    <td colspan="2">{{ list_dict.my_playlist}}</td>
                     <td>
-                        <a href="{% url 'rename_playlist' pk=list_dict.my_playlist.pk %}">RENAME/</a>
-                        <a href="{% url 'delete_playlist' pk=list_dict.my_playlist.pk %}">DELETE</a>
+                        <a href="{% url 'play_rename' pk=list_dict.my_playlist.pk %}">RENAME/</a>
+                        <a href="{% url 'play_delete' pk=list_dict.my_playlist.pk %}">DELETE</a>
                     </td>
                 </tr>
-                <table id="testTable">
             <colgroup>
                 <col style="width: 50%">
                 <col style="width: 30%">
@@ -60,7 +59,7 @@
                     <td>{{ song.song_title }}</td>
                     <td>{{ song.song_artist }}</td>
                     <td>
-                        <a href="{% url 'delete_song' play_pk=list_dict.my_playlist.pk song_pk=song.pk %}">DELETE</a>
+                        <a href="{% url 'song_delete' play_pk=list_dict.my_playlist.pk song_pk=song.pk %}">DELETE</a>
                     </td>
                 </tr>
             {% endfor %}

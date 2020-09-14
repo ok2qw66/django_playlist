@@ -23,6 +23,7 @@ TAG_CHOICES = (
         )
 
 
+# 노래 모델
 class Song(models.Model):
     # song 제목
     song_title = models.CharField(max_length=100)
@@ -30,9 +31,9 @@ class Song(models.Model):
     song_artist = models.CharField(max_length=30)
     # youtube 링크
     song_url = models.CharField(max_length=400)
-    # 장르
+    # 장르 (목록에서 선택)
     song_genre = models.CharField(choices=GENRE_CHOICES, max_length=128)
-    # 태그
+    # 태그 (목록에서 선택)
     song_tag = models.CharField(choices=TAG_CHOICES, max_length=128)
     # 시작 시간
     song_start = models.CharField(max_length=100, null=True)
@@ -40,39 +41,25 @@ class Song(models.Model):
     song_end = models.CharField(max_length=100, null=True)
     # 이미지 필드
     song_thumbnail = models.ImageField(blank=True, null=True)
-    # song_detail
+    # 노래 상세정보
     song_detail = models.TextField(blank=True, null=True)
-    # song author (추가한 사용자)
-    author = models.ForeignKey('auth.User', on_delete=models.SET_DEFAULT,default=5)  # ForeignKey 는 class
-
-
+    # 노래 추가한 사용자
+    author = models.ForeignKey('auth.User', on_delete=models.SET_DEFAULT,default=1)  # ForeignKey 는 class
 
     def __str__(self):
         return self.song_title + '('+self.song_artist+')'
 
 
-    def indexing(self):
-        obj = SongDocument(
-        song_title= self.song_title,
-        song_artist = self.song_artist,
-        song_url = self.song_url,
-        song_genre = self.song_genre,
-        song_tag = self.song_tag,
-        song_detail = self.song_detail,
-        )
-        obj.save()
-        return obj.to_dict(include_meta=True)
-
-
+# playlist 모델
 class Playlist(models.Model):
-    # 작성자
+    # playlist 작성자
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)  # ForeignKey 는 class
     # playlist 제목
     play_title = models.CharField(max_length=200)
-    # song_list
+    # playlist에 들어가는 노래리스트
     play_list = models.CharField(max_length=200)
-    # play_detail
-    play_detail = models.TextField()
+    # playlist 상세정보
+    play_detail = models.TextField(null=True)
 
     def __str__(self):
         return self.play_title

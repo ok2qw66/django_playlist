@@ -42,10 +42,10 @@
                                     </div>
                                     {% if user.is_active %}
                                         <div class="single-web-icon" style="border:none;height:80px;">
-                                            <a href="{% url 'list_copy' pk=play_detail_list.pk %}"><i class="icon-like" style="width: 100%"></i></a>
+                                            <a href="{% url 'play_copy' pk=play_detail_list.pk %}"><i class="icon-like" style="width: 100%"></i></a>
                                         </div>
                                         <div style="height:80px;padding-top:45px;">
-                                            <a href="{% url 'list_copy' pk=play_detail_list.pk %}">{{user.username }} 님의 플레이 리스트에 추가</a>
+                                            <a href="{% url 'play_copy' pk=play_detail_list.pk %}">{{user.username }} 님의 플레이 리스트에 추가</a>
                                         </div>
                                     {% endif %}
                                 </div>

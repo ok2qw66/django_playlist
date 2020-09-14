@@ -43,7 +43,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="{% url 'index' %}" class="nav-brand"><img src={% static "plist/img/core-img/logo.png"%} alt=""></a>
+                        <a href="{% url 'main' %}" class="nav-brand"><img src={% static "plist/img/core-img/logo.png"%} alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -61,7 +61,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="{% url 'index' %}">Home </a></li>
+                                    <li><a href="{% url 'main' %}">Home </a></li>
                                     <li><a href="#">Search</a>
                                         <ul class="dropdown">
                                             <li><a href="{% url 'title' %}">Title</a></li>
@@ -70,13 +70,13 @@
                                             <li><a href="{% url 'tag' %}">Tag</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="{% url 'event' %}">All Playlist</a></li>
+                                    <li><a href="{% url 'play_all' %}">All Playlist</a></li>
                                     <li><a href="#">MyPage</a>
                                         <ul class="dropdown">
                                             <li><a href="{% url 'song_new' %}">Add New Song</a></li>
-                                            <li><a href="{% url 'list_new'%}">Add New Playlist</a></li>
-                                            <li><a href="{% url 'playlist' %}">My Playlist</a></li>
-                                            <li><a href="{% url 'my_info' %}">My Detail</a></li>
+                                            <li><a href="{% url 'play_new'%}">Add New Playlist</a></li>
+                                            <li><a href="{% url 'my_play' %}">My Playlist</a></li>
+                                            <li><a href="{% url 'my_detail_play' %}">My Detail</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -102,7 +102,7 @@
                                         </div>
                                         <!-- Cart Button -->
                                         <div class="cart-btn">
-                                            <p><span class="icon-folder"></span><a href="{% url 'list_new' %}"><span class="quantity">+</span></a> </p>
+                                            <p><span class="icon-folder"></span><a href="{% url 'play_new' %}"><span class="quantity">+</span></a> </p>
                                         </div>
                                     {% endif %}
                                 </div>
@@ -132,15 +132,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
 
                 <div class="col-12 col-md-6">
-{#                    <div class="footer-nav">#}
-{#                        <ul>#}
-{#                            <li><a href="{% url 'index' %}">Home</a></li>#}
-{#                            <li><a href="{% url 'album' %}">Albums</a></li>#}
-{#                            <li><a href="{% url 'event' %}">Events</a></li>#}
-{#                            <li><a href="{% url 'blog' %}">News</a></li>#}
-{#                            <li><a href="{% url 'contact' %}">Contact</a></li>#}
-{#                        </ul>#}
-{#                    </div>#}
                 </div>
             </div>
         </div>
